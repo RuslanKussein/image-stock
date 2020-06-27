@@ -3,7 +3,7 @@ import axios from 'axios';
 import Image from './Image';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import '../styles/style.css'
-
+import Search from "./Search";
 
 class Collage extends React.Component {
     constructor(props) {
@@ -72,11 +72,9 @@ class Collage extends React.Component {
     render() {
         return (
             <div className="container">
-                <form action="" onSubmit={(event) => this.handleSubmit(event)}>
-                    <input type="text"
-                           placeholder="Поиск"
-                           onChange={this.handleChange}/>
-                </form>
+                <Search
+                    onChange={this.handleChange}
+                    onSubmit={this.handleSubmit}/>
 
                 <InfiniteScroll
                     dataLength={this.state.images}

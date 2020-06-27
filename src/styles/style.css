@@ -27,3 +27,29 @@ img{
 .image-container__image {
     border-radius: 15px;
 }
+
+/*Form*/
+.form {
+    background: #000;
+    height: 80px;
+    margin-top: 70px;
+}
+.form__input {
+    background-color: transparent;
+    display: block;
+    color: #fff;
+    border:none;
+    text-align:center;
+    font-size: 30px;
+    border-bottom: 1px solid #fff;
+    width:50%;
+    margin: 0 auto;
+    padding: 10px 5px 10px;
+    outline:none;
+}
+
+::placeholder {
+    color: #fff;
+    font-size: 30px;
+}
+
