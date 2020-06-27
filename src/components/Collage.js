@@ -88,7 +88,7 @@ class Collage extends React.Component {
                             className="loading"
                         />}
                 >
-                    <div className="image-grid" style={{ marginTop: "30px" }}>
+                    <div className="image-grid">
                         {(this.state.images.length > 1) ? this.state.images.map((image, index) => (
                                 <Image url={image.urls.regular} key={index} />
                             )) : <ImageNotFound/>}
