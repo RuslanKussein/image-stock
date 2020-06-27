@@ -25,7 +25,7 @@ class Collage extends React.Component {
         console.log(`history: ${history}`);
 
         const apiRoot = "https://api.unsplash.com";
-        const accessKey = "-0xS0wk_81lBeUQ7EKpxqSCxh-XkhWTOR2tt7ibblPY";
+        const accessKey = "";
 
         axios
             .get(
@@ -47,7 +47,7 @@ class Collage extends React.Component {
     fetch(count = 5) {
         console.log(this.state.value);
         const apiRoot = "https://api.unsplash.com";
-        const accessKey = "";
+        const accessKey = "-0xS0wk_81lBeUQ7EKpxqSCxh-XkhWTOR2tt7ibblPY";
 
         axios
             .get(
