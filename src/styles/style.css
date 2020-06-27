@@ -53,3 +53,19 @@ img{
     font-size: 30px;
 }
 
+/*loading*/
+.loading {
+    width: 50px;
+    height: 50px;
+    margin: 30px auto;
+}
+
+/*Image Not Found*/
+.no-content-available {
+    width: 100%;
+    font-size: 30px;
+    color: #000;
+    font-family: "Yu Gothic UI Semibold";
+    text-align: center;
+    margin: 5px 0;
+}

@@ -4,6 +4,7 @@ import Image from './Image';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import '../styles/style.css'
 import Search from "./Search";
+import ImageNotFound from "./ImageNotFound";
 
 class Collage extends React.Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class Collage extends React.Component {
         console.log(`history: ${history}`);
 
         const apiRoot = "https://api.unsplash.com";
-        const accessKey = "";
+        const accessKey = "-0xS0wk_81lBeUQ7EKpxqSCxh-XkhWTOR2tt7ibblPY";
 
         axios
             .get(
@@ -46,7 +47,7 @@ class Collage extends React.Component {
     fetch(count = 5) {
         console.log(this.state.value);
         const apiRoot = "https://api.unsplash.com";
-        const accessKey = "-0xS0wk_81lBeUQ7EKpxqSCxh-XkhWTOR2tt7ibblPY";
+        const accessKey = "";
 
         axios
             .get(
@@ -82,14 +83,15 @@ class Collage extends React.Component {
                     hasMore={true}
                     loader={
                         <img
-                            src="https://res.cloudinary.com/chuloo/image/upload/v1550093026/scotch-logo-gif_jq4tgr.gif"
+                            src="https://media.giphy.com/media/MEiZ5h8lOkM7rwideE/giphy.gif"
                             alt="loading"
+                            className="loading"
                         />}
                 >
                     <div className="image-grid" style={{ marginTop: "30px" }}>
                         {(this.state.images.length > 1) ? this.state.images.map((image, index) => (
                                 <Image url={image.urls.regular} key={index} />
-                            )) : "JOK IMAGES"}
+                            )) : <ImageNotFound/>}
                     </div>
 
                 </InfiniteScroll>
