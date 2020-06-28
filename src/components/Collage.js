@@ -5,6 +5,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import '../styles/style.css'
 import Search from "./Search";
 import ImageNotFound from "./ImageNotFound";
+import CollageButtons from "./CollageButtons";
+import Nav from "./Nav";
 
 class Collage extends React.Component {
     constructor(props) {
@@ -13,10 +15,12 @@ class Collage extends React.Component {
             value: '',
             images: [],
             history: [],
+            favorites: []
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.fetch = this.fetch.bind(this);
+        this.handleFavorites = this.handleFavorites.bind(this);
     }
 
     handleSubmit(event, count = 5) {
@@ -25,7 +29,7 @@ class Collage extends React.Component {
         console.log(`history: ${history}`);
 
         const apiRoot = "https://api.unsplash.com";
-        const accessKey = "";
+        const accessKey = "-0xS0wk_81lBeUQ7EKpxqSCxh-XkhWTOR2tt7ibblPY";
 
         axios
             .get(
@@ -47,7 +51,7 @@ class Collage extends React.Component {
     fetch(count = 5) {
         console.log(this.state.value);
         const apiRoot = "https://api.unsplash.com";
-        const accessKey = "-0xS0wk_81lBeUQ7EKpxqSCxh-XkhWTOR2tt7ibblPY";
+        const accessKey = "";
 
         axios
             .get(
@@ -70,12 +74,31 @@ class Collage extends React.Component {
         })
     }
 
+    handleFavorites(like, id) {
+        if (like) {
+            this.setState({
+                favorites: [...this.state.favorites, id]
+            })
+        } else {
+            const filteredFavorites = this.state.favorites.filter((item) => item !== id);
+            console.log(filteredFavorites);
+            this.setState({
+                favorites: filteredFavorites
+            })
+        }
+    }
+
     render() {
         return (
             <div className="container">
+
+                <Nav history={this.state.history}/>
+
                 <Search
                     onChange={this.handleChange}
                     onSubmit={this.handleSubmit}/>
+
+                <CollageButtons/>
 
                 <InfiniteScroll
                     dataLength={this.state.images}
@@ -83,18 +106,23 @@ class Collage extends React.Component {
                     hasMore={true}
                     loader={
                         <img
-                            src="https://media.giphy.com/media/MEiZ5h8lOkM7rwideE/giphy.gif"
-                            alt="loading"
+                            src={require("../gifs/loading.gif")}
+                            alt="loading gif"
                             className="loading"
                         />}
                 >
                     <div className="image-grid">
                         {(this.state.images.length > 1) ? this.state.images.map((image, index) => (
-                                <Image url={image.urls.regular} key={index} />
+                                <Image
+                                    data={image}
+                                    url={image.urls.regular}
+                                    key={index}
+                                    onFavorites={this.handleFavorites}/>
                             )) : <ImageNotFound/>}
                     </div>
 
                 </InfiniteScroll>
+
             </div>
         );
     }

@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
 
 /*Grid*/
 .image-grid {
@@ -21,19 +26,21 @@ img{
 }
 
 /*Single Image*/
-.image-container {
-    padding: 0 5%;
+.collage-image-container {
+    position: relative;
+    z-index: 1;
+    padding: 0 15px;
 }
 
-.image-container__image {
+.collage-image-container__image {
     border-radius: 15px;
 }
 
 /*Form*/
 .form {
     background: #000;
-    height: 80px;
-    margin-top: 70px;
+    height: 135px;
+    margin-top: 80px;
 }
 .form__input {
     background-color: transparent;
@@ -47,18 +54,20 @@ img{
     margin: 0 auto;
     padding: 15px 5px 10px;
     outline:none;
+    letter-spacing: 1px;
 }
 
 ::placeholder {
     color: #fff;
     font-size: 30px;
+    letter-spacing: 1px;
 }
 
 /*loading*/
 .loading {
-    width: 50px;
-    height: 50px;
-    margin: 30px auto;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
 }
 
 /*Image Not Found*/
@@ -74,24 +83,22 @@ img{
 /*carousel*/
 .owl-theme {
     position: absolute!important;
-    top: 150px;
-}
-
-.item {
+    top: 145px;
 }
 
 .item p {
     white-space: nowrap;
     text-align: center;
-    color: #000;
-    font-size: 15px;
-    font-weight: normal;
+    font-family: "Fira Code Light";
+    color: #fff;
+    font-size: 17px;
 }
 
 /*Nav*/
 
 .nav {
     position: fixed;
+    z-index: 20;
     top: 0;
     left: 0;
     width: 100%;
@@ -111,7 +118,7 @@ img{
 }
 
 .nav__button_home {
-    left: 20px;
+    left: 8px;
 }
 
 .nav__button_search {
@@ -126,7 +133,96 @@ img{
     left: 83vw;
 }
 
-.pzdc {
-    margin-top: 1000px;
-    height: 2000px;
+
+/*Collage Buttons //Kadirmendi agayin toi keshimdi bastayin*/
+
+.collage__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 28px;
+}
+
+.collage__buttons__button {
+    font-size: 25px;
+    color: #767676;
+    margin-right: 5px;
+    background: transparent;
+    border: none;
+}
+
+.selected {
+    color: #111;
+}
+
+/*When Hovers the image*/
+.collage-image-container__more{
+    display: none;
+    width: 90%;
+}
+
+.collage-image-container:hover .collage-image-container__more {
+    display: flex;
+    position: absolute;
+    top: 20%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.collage-image-container:hover .collage-image-container__image{
+    filter: blur(3px) brightness(75%);
+    transition: 0.3s;
+}
+
+.collage-image-container__more__buttons{
+    display: inline-flex;
+    justify-content: space-evenly;
+    width: 60%;
+}
+
+.collage-image-container:hover .collage-image-container__more__buttons__button {
+    border:none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 23px;
+}
+
+.collage-image-container__more__buttons__button:hover {
+    transform: scale(1.3);
+    transition: 0.3s;
+}
+
+/*UserInfo*/
+.user-info-container {
+    z-index: 11;
+    font-family: "Open Sans";
+    text-align: center;
+    color: #fff;
+}
+
+.user-info-container__photo {
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    border-radius: 6px;
+    border: 1px solid #fff;
+}
+
+.user-info-container__name {
+    font-size: 20px;
+    margin: 3px 0 0;
+}
+
+.user-info-container__username {
+    font-size: 15px;
+    margin: -5px 0 10%;
+}
+
+/*like_true*/
+.like_true {
+    font-weight: 800;
+}
+.like_false {
+    font-weight: 400;
 }
