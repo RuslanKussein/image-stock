@@ -221,8 +221,8 @@ img{
 
 /*like_true*/
 .like_true {
-    font-weight: 800;
+    color: red!important;
 }
 .like_false {
-    font-weight: 400;
+    color: #fff!important;
 }

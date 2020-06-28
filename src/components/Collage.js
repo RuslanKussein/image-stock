@@ -74,14 +74,14 @@ class Collage extends React.Component {
         })
     }
 
-    handleFavorites(like, id) {
+    handleFavorites(like, image) {
+        console.log(this.state.favorites);
         if (like) {
             this.setState({
-                favorites: [...this.state.favorites, id]
+                favorites: [...this.state.favorites, image]
             })
         } else {
-            const filteredFavorites = this.state.favorites.filter((item) => item !== id);
-            console.log(filteredFavorites);
+            const filteredFavorites = this.state.favorites.filter((item) => item !== image);
             this.setState({
                 favorites: filteredFavorites
             })

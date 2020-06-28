@@ -8,33 +8,34 @@ class Image extends React.Component {
             like: false
         };
         this.handleLike = this.handleLike.bind(this);
+        this.addOrRemoveImage = this.addOrRemoveImage.bind(this);
     }
 
-    handleLike(handleFavorites, id) {
+    handleLike(event) {
         this.setState({
             like: !this.state.like
         });
+        const target = event.target;
+        if (!this.state.like === true) {
+            target.classList.remove('like_false');
+            target.classList.add('like_true');
+        } else {
+            target.classList.remove('like_true');
+            target.classList.add('like_false');
+        }
+
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevState.like !== this.state.like) {
-            const {data, onFavorites: handleFavorites} = this.props;
-            handleFavorites(this.state.like, data.id);
-            const target = document.querySelector(('.like_true' || '.like_false'));
-            if (this.state.like === true) {
-                target.classList.remove('.like_true');
-                target.classList.add('.like_false');
-            } else {
-                target.classList.remove('.like_false');
-                target.classList.add('.like_true');
-            }
+    addOrRemoveImage(event, handleFavorites) {
+        if (event.target.parentElement && event.target.parentElement.classList.contains('like-button')) {
+            handleFavorites(!this.state.like, event.currentTarget)
         }
     }
 
     render() {
-        const {url, data: {user, description}} = this.props;
+        const {url, data: {user, description}, onFavorites: handleFavorites} = this.props;
         return (
-            <div className="collage-image-container">
+            <div className="collage-image-container" onClick={(event) => this.addOrRemoveImage(event, handleFavorites)}>
 
                 <img src={url} className="collage-image-container__image" alt={description}/>
 
@@ -44,7 +45,7 @@ class Image extends React.Component {
 
                     <div className="collage-image-container__more__buttons">
 
-                        <button className="collage-image-container__more__buttons__button like_false" onClick={this.handleLike}>
+                        <button className="collage-image-container__more__buttons__button like-button like_false" onClick={(event) => this.handleLike(event)}>
                             <i className="fas fa-heart"></i>
                         </button>
 
