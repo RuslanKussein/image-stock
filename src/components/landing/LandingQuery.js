@@ -1,29 +1,25 @@
 import React from 'react';
-import '../styles/App.css';
 import { connect } from "react-redux";
-import setQueryAction from '../actions/actionQuery';
-import setImagesAction from '../actions/actionImages';
-import setFavoritesAction from '../actions/actionFavorites';
-import setSearchHistoryAction from '../actions/actionSearchHistory';
-import setImagesHistoryAction from '../actions/actionImagesHistory';
-import Collage from './Collage';
+import setQueryAction from '../../actions/actionQuery';
+import setImagesAction from '../../actions/actionImages';
+import setFavoritesAction from '../../actions/actionFavorites';
+import setSearchHistoryAction from '../../actions/actionSearchHistory';
+import setImagesHistoryAction from '../../actions/actionImagesHistory';
+import Collage from '../../containers/Collage';
 
-const App = (props) => (
+const LandingQuery = (props) => (
+    <Collage
+        query={props.query}
+        images={props.images}
+        favorites={props.favorites}
+        searchHistory={props.searchHistory}
+        imagesHistory={props.imagesHistory}
+        setQuery={props.setQueryFunction}
+        setImages={props.setImagesFunction}
+        setFavorites={props.setFavoritesFunction}
+        setSearchHistory={props.setSearchHistoryFunction}
+        setImagesHistory={props.setImagesHistoryFunction}/>
 
-    <div>
-        <Collage
-            query={props.query}
-            images={props.images}
-            favorites={props.favorites}
-            searchHistory={props.searchHistory}
-            imagesHistory={props.imagesHistory}
-            setQuery={props.setQueryFunction}
-            setImages={props.setImagesFunction}
-            setFavorites={props.setFavoritesFunction}
-            setSearchHistory={props.setSearchHistoryFunction}
-            setImagesHistory={props.setImagesHistoryFunction}/>*/}
-
-    </div>
 );
 
 function mapStateToProps(state) {
@@ -60,4 +56,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(LandingQuery);

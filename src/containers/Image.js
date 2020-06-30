@@ -5,10 +5,11 @@ class Image extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            like: false
+            like: this.props.like || false
         };
         this.handleLike = this.handleLike.bind(this);
         this.addOrRemoveImage = this.addOrRemoveImage.bind(this);
+        this.handleFavorites = this.handleFavorites.bind(this);
     }
 
     handleLike(event) {
@@ -26,16 +27,26 @@ class Image extends React.Component {
 
     }
 
-    addOrRemoveImage(event, handleFavorites) {
+    handleFavorites(like, image) {
+        if (like) {
+            this.props.setFavorites([...this.props.favorites, image]);
+        } else {
+            const filteredFavorites = this.props.favorites.filter((item) => item !== image);
+            this.props.setFavorites(filteredFavorites);
+        }
+    }
+
+    addOrRemoveImage(event) {
         if (event.target.parentElement && event.target.parentElement.classList.contains('like-button')) {
-            handleFavorites(!this.state.like, event.currentTarget)
+            this.handleFavorites(!this.state.like, this.props.data);
         }
     }
 
     render() {
-        const {url, data: {user, description}, onFavorites: handleFavorites} = this.props;
+        const {url, data: {user, description}} = this.props;
+        {console.log(this.state.like)}
         return (
-            <div className="collage-image-container" onClick={(event) => this.addOrRemoveImage(event, handleFavorites)}>
+            <div className="collage-image-container" onClick={(event) => this.addOrRemoveImage(event)}>
 
                 <img src={url} className="collage-image-container__image" alt={description}/>
 
@@ -45,7 +56,7 @@ class Image extends React.Component {
 
                     <div className="collage-image-container__more__buttons">
 
-                        <button className="collage-image-container__more__buttons__button like-button like_false" onClick={(event) => this.handleLike(event)}>
+                        <button className={`collage-image-container__more__buttons__button like-button ${this.state.like ? "like_true" : "like_false"}`} onClick={(event) => this.handleLike(event)}>
                             <i className="fas fa-heart"></i>
                         </button>
 

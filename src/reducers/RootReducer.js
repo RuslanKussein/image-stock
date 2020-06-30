@@ -1,8 +1,8 @@
 import {combineReducers} from "redux";
-import imageStockInfo from "./info";
+import imageStockInfo from "./ImageStockInfo";
 
-const RootReducer = combineReducers({
+const rootReducer = combineReducers({
     imageStockInfo
 });
 
-export default RootReducer;
+export default rootReducer;
