@@ -3,19 +3,21 @@ import '../styles/style.css'
 import OwlCarousel from "react-owl-carousel";
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import setQueryAction from "../actions/actionQuery";
+import {connect} from "react-redux";
 
-const Carousel = () => (
-    <div className="carousel">
+const Carousel = props => (
+    <div className="carousel" onClick={(event) => props.setQueryFunction(event.target.textContent)}>
         <OwlCarousel
             className="owl-theme"
             margin={10}
             dots={false}
             touchDrag
         >
-            <div className="item" onClick={(event) => alert(event.target.innerHTML)}><p>Wallpapers</p></div>
-            <div className="item" onClick={(event) => alert(event.target.innerHTML)}><p>Textures & Patterns</p></div>
-            <div className="item" onClick={(event) => alert(event.target.innerHTML)}><p>Nature</p></div>
-            <div className="item" onClick={(event) => alert(event.target.innerHTML)}><p>Current Events</p></div>
+            <div className="item"><p>Wallpapers</p> </div>
+            <div className="item"><p>Textures & Patterns</p></div>
+            <div className="item"><p>Nature</p></div>
+            <div className="item"><p>Current Events</p></div>
             <div className="item"><p>Architecture</p></div>
             <div className="item"><p>Business & Work</p></div>
             <div className="item"><p>Film</p></div>
@@ -33,4 +35,18 @@ const Carousel = () => (
     </div>
 );
 
-export default Carousel;
+function mapStateToProps(state) {
+    return {
+        query: state.imageStockInfo.query
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        setQueryFunction: query => {
+            dispatch(setQueryAction(query))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Carousel);

@@ -12,12 +12,12 @@ const Nav = props => (
             <i className="fas fa-search"></i>
         </button>
 
-        <button className="nav__button nav__button_favorites">
+        <button className="nav__button nav__button_favorites" onClick={() => console.log(props.favorites)}>
             <i className="fas fa-heart"></i>
         </button>
 
-        <button className="nav__button nav__button_search-history">
-            <i className="fas fa-history" onClick={() => console.log(props.searchHistory)}></i>
+        <button className="nav__button nav__button_search-history" onClick={() => console.log(props.searchHistory)}>
+            <i className="fas fa-history"></i>
         </button>
 
     </div>

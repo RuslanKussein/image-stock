@@ -3,60 +3,49 @@ import axios from 'axios';
 import Image from './Image';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import '../styles/style.css'
-import Search from "./Search";
-import ImageNotFound from "./ImageNotFound";
-import CollageButtons from "./CollageButtons";
-import Nav from "./Nav";
+import Search from "../components/Search";
+import ImageNotFound from "../components/ImageNotFound";
+import CollageButtons from "../components/CollageButtons";
+import Nav from "../components/Nav";
 
 class Collage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            query: '',
-            images: [],
-            searchHistory: [],
-            favorites: []
-        };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.fetchWithQuery = this.fetchWithQuery.bind(this);
         this.handleFavorites = this.handleFavorites.bind(this);
     }
 
-    handleSubmit(event) {
-        const {searchHistory, images, query} = this.state;
+    handleSubmit() {
+        const {searchHistory, images, query} = this.props;
         const apiRoot = "https://api.unsplash.com";
-        const accessKey = "";
-
+        const accessKey = "SRRiJ_oUF0utzD_1LUQjziknd9NCYn9CqLEc8mMTKbM";
         axios
             .get(`${apiRoot}/search/photos/?page=1&per_page=10&query=${query}&client_id=${accessKey}`)
             .then (res => {
-                this.setState({
-                    images: (searchHistory.length > 0 && searchHistory[searchHistory.length - 1] !== query) ?
-                        [...res.data.results] :
-                        [...images, ...res.data.results],
-                    searchHistory: [...searchHistory, query]
-                })
+                if (searchHistory.length > 0 && searchHistory[searchHistory.length - 1] !== query) {
+                    this.props.setImages([...res.data.results]);
+                } else {
+                    this.props.setImages([...images, ...res.data.results]);
+                }
+                this.props.setSearchHistory([...searchHistory, query]);
             })
             .catch(err => {
                 console.log('Error happened during fetching: ', err);
             });
-
-        event.preventDefault();
     }
 
     fetchWithQuery() {
         const apiRoot = "https://api.unsplash.com";
-        const accessKey = "SRRiJ_oUF0utzD_1LUQjziknd9NCYn9CqLEc8mMTKbM";
+        const accessKey = "";
 
         axios
             .get(
-                `${apiRoot}/search/photos/?page=1&per_page=10&query=${this.state.query}&client_id=${accessKey}`
+                `${apiRoot}/search/photos/?page=1&per_page=10&query=${this.props.query}&client_id=${accessKey}`
             )
             .then (res => {
-                this.setState({
-                    images: [...this.state.images, ...res.data.results],
-                })
+                this.props.setImages([...this.props.images, ...res.data.results]);
             })
             .catch(err => {
                 console.log('Error happened during fetching', err);
@@ -64,21 +53,15 @@ class Collage extends React.Component {
     }
 
     handleChange(event) {
-        this.setState({
-            query: event.target.value
-        })
+        this.props.setQuery(event.target.value);
     }
 
     handleFavorites(like, image) {
         if (like) {
-            this.setState({
-                favorites: [...this.state.favorites, image]
-            })
+            this.props.setFavorites([...this.props.favorites, image]);
         } else {
-            const filteredFavorites = this.state.favorites.filter((item) => item !== image);
-            this.setState({
-                favorites: filteredFavorites
-            })
+            const filteredFavorites = this.props.favorites.filter((item) => item !== image);
+            this.props.setFavorites(filteredFavorites);
         }
     }
 
@@ -86,15 +69,40 @@ class Collage extends React.Component {
         return (
             <div className="container">
 
-                <Nav searchHistory={this.state.searchHistory}/>
+                <Nav
+                    searchHistory={this.props.searchHistory}
+                    favorites={this.props.favorites}/>
 
                 <Search
+                    value={this.props.query}
                     onChange={this.handleChange}
                     onSubmit={this.handleSubmit}/>
 
                 <CollageButtons/>
 
                 <InfiniteScroll
+                    dataLength={this.props.images}
+                    next={() => this.fetchWithQuery()}
+                    hasMore={true}
+                    loader={
+                        <img src={require("../gifs/loading.gif")} alt="loading gif" className="loading"/>}
+                >
+
+                    <div className="image-grid">
+                        {this.props.images.length > 1 ?
+                            this.props.images.map((image, index) => (
+                                <Image
+                                    data={image}
+                                    url={image.urls.regular}
+                                    key={index}
+                                    onFavorites={this.handleFavorites}/>
+                                    )
+                            ) : <ImageNotFound/>}
+                    </div>
+
+                </InfiniteScroll>
+
+                {/*<InfiniteScroll
                     dataLength={this.state.images}
                     next={() => this.fetchWithQuery()}
                     hasMore={true}
@@ -114,7 +122,7 @@ class Collage extends React.Component {
                             ) : <ImageNotFound/>}
                     </div>
 
-                </InfiniteScroll>
+                </InfiniteScroll>*/}
 
             </div>
         );

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Search = ({onSubmit: handleSubmit, onChange: handleChange}) => (
+const Search = ({value, onChange: handleChange, onSubmit: handleSubmit}) => (
     <form action="" className="form"
           onSubmit={(event) => handleSubmit(event)}>
 
-        <input type="text" placeholder="Поиск" className="form__input"
+        <input type="text" placeholder="Поиск" className="form__input" value={value}
                onChange={handleChange}/>
 
     </form>

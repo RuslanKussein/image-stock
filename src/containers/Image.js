@@ -1,5 +1,5 @@
 import React from 'react';
-import UserInfo from './UserInfo';
+import UserInfo from '../components/UserInfo';
 
 class Image extends React.Component {
     constructor(props) {

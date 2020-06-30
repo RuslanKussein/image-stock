@@ -1,11 +1,15 @@
-/*
- <Router>
-        <Link to="/">Home</Link>
-        <Link to="/favorites">Favorites</Link>
-        <Link to="/history">History</Link>
+import React from 'react';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
-      <Route exact path="/" render={() => <div>Home</div>}/>
-      <Route path="/favorites" render={() => <div>favorites</div>}/>
-        <Route path="/history" render={() => <div>history</div>}/>
-    </Router>
- */
+export default (
+ <Router>
+     <Link to="/">Home</Link>
+     <Link to="/favorites">Favorites</Link>
+     <Link to="/history">History</Link>
+
+     <Route exact path="/" />
+     {/*<Route path="/favorites" component={LandingFavorites}/>
+     <Route path="/history" component={LandingHistory}/>*/}
+
+ </Router>
+);
