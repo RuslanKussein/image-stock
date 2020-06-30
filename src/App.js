@@ -2,15 +2,18 @@ import React from 'react';
 import './App.css';
 import Collage from './components/Collage';
 import Carousel from "./components/Carousel";
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {createStore} from 'redux';
 
-function App() {
-  return (
-      <div>
-        <Collage/>
-        <Carousel />
-      </div>
-  );
-}
+const App = () => (
+    <div>
+
+      <Collage/>
+
+      <Carousel />
+
+    </div>
+);
 
 window.addEventListener("scroll", function () {
   if (this.scrollY === 0) {

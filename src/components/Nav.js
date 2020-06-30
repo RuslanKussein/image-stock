@@ -17,7 +17,7 @@ const Nav = props => (
         </button>
 
         <button className="nav__button nav__button_search-history">
-            <i className="fas fa-history" onClick={() => console.log(props.history)}></i>
+            <i className="fas fa-history" onClick={() => console.log(props.searchHistory)}></i>
         </button>
 
     </div>
