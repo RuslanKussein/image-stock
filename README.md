@@ -1,3 +1,17 @@
+# Single - Page Application
+
+# Built With:
+- HTML, CSS, JS(ES6+), npm
+- React, Redux, React-Router
+
+# Demo
+- git clone https://github.com/RuslanKussein/image-stock.git
+- npm init
+- create developer account in https://unsplash.com/developers
+- set accessKey in image-stock/src/components/landing/LandingNew, image-stock/src/components/landing/LandingQuery
+- run npm start
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
