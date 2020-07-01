@@ -18,9 +18,9 @@ class Collage extends React.Component {
     handleSubmit(event) {
         const {searchHistory, images, query} = this.props;
         const apiRoot = "https://api.unsplash.com";
-        const accessKey = "SRRiJ_oUF0utzD_1LUQjziknd9NCYn9CqLEc8mMTKbM";
+        const accessKey = "";
         axios
-            .get(`${apiRoot}/search/photos/?page=1&per_page=10&query=${query}&client_id=${accessKey}`)
+            .get(`${apiRoot}/search/photos/?page=1&per_page=30&query=${query}&client_id=${accessKey}`)
             .then (res => {
                 if (searchHistory.length > 0 && searchHistory[searchHistory.length - 1] !== query) {
                     this.props.setImages([...res.data.results]);
@@ -37,11 +37,11 @@ class Collage extends React.Component {
 
     fetchWithQuery() {
         const apiRoot = "https://api.unsplash.com";
-        const accessKey = "";
+        const accessKey = "dGct7mjhLLtRjJVaHR137Q_I5tXHXkrHDjHlrle9zzU";
 
         axios
             .get(
-                `${apiRoot}/search/photos/?page=1&per_page=10&query=${this.props.query}&client_id=${accessKey}`
+                `${apiRoot}/search/photos/?page=2&per_page=10&query=${this.props.query}&client_id=${accessKey}`
             )
             .then (res => {
                 this.props.setImages([...this.props.images, ...res.data.results]);

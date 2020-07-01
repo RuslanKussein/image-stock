@@ -5,31 +5,33 @@ import Image from "../../containers/Image";
 import CollageButtons from "../CollageButtons";
 import Search from "../Search";
 import setQueryAction from "../../actions/actionQuery";
+import Carousel from "../Carousel";
 
 class LandingFavorites extends React.Component {
 
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit() {
-        document.querySelector('.nav__button_home').click();
+
     }
 
     handleChange(event) {
         this.props.setQueryFunction(event.target.value);
     }
 
+    componentDidMount() {
+        document.querySelector(".collage__buttons").classList.add("margin100");
+        document.querySelector('.nav__button_search').removeAttribute('hidden');
+    }
+
     render() {
         return (
             <div className="container">
-
-                <Search
-                    value={this.props.query}
-                    onChange={this.handleChange}
-                    onSubmit={this.handleSubmit}/>
-
+                Избранное
                 <CollageButtons />
 
                 <div className="image-grid">

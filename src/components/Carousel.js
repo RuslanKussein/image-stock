@@ -7,7 +7,7 @@ import setQueryAction from "../actions/actionQuery";
 import {connect} from "react-redux";
 
 const Carousel = props => (
-    <div className="carousel" onClick={(event) => props.setQueryFunction(event.target.textContent)}>
+    <div className="carousel" onClick={(event) => props.setQuery(event.target.textContent)}>
         <OwlCarousel
             className="owl-theme"
             margin={10}
@@ -35,18 +35,4 @@ const Carousel = props => (
     </div>
 );
 
-function mapStateToProps(state) {
-    return {
-        query: state.imageStockInfo.query
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        setQueryFunction: query => {
-            dispatch(setQueryAction(query))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Carousel);
+export default Carousel;
