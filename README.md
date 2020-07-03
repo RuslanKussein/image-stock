@@ -2,7 +2,7 @@
 
 # Built With:
 - HTML, CSS, JS(ES6+), npm
-- React, Redux, React-Router
+- React, Redux, React-Router, Unsplash API
 
 # Demo
 - git clone https://github.com/RuslanKussein/image-stock.git
