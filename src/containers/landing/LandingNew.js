@@ -9,6 +9,7 @@ import Image from "../Image";
 import CollageButtons from "../../components/CollageButtons";
 import Search from "../../components/Search";
 import Carousel from "../../components/Carousel";
+import ExpandedImage from "../ExpandedImage";
 
 class LandingNew extends Component {
     constructor(props) {
@@ -71,12 +72,12 @@ class LandingNew extends Component {
 
                     <div className="image-grid">
                         {this.state.downloadedImages.map((image) => (
-                                <Image
+                                <ExpandedImage
                                     data={image}
                                     url={image.urls.regular}
                                     key={image.id}
                                     favorites={this.props.favorites}
-                                    setFavorites={this.props.setFavoritesFunction} />
+                                    setFavorites={this.props.setFavoritesFunction}/>
                             )
                         )}
                     </div>

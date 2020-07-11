@@ -5,6 +5,9 @@
     scroll-behavior: smooth;
 }
 
+body {
+    font-family: "Yu Gothic UI Semibold";
+}
 /*Grid*/
 .image-grid {
     display: grid;
@@ -263,10 +266,52 @@ img{
 .margin100{
     margin-top: 20px;
 }
-
+/*text-favorites*/
 .text-favorites{
     color: #000;
     margin-top: 105px;
-    font: 1.5rem "Yu Gothic UI Semibold";
+    font-size: 1.5rem;
     text-align: center;
 }
+
+/*Expanded Image*/
+.expanded-image-container {
+    padding: 0 15px;
+}
+
+.expanded-image-container__image {
+    filter: brightness(80%);
+    transition: 0.3s;
+    border-radius: 15px;
+
+}
+
+.similar-tegs{
+    margin-top: 8%;
+    font-size: 1.2rem;
+}
+
+.tags {
+    display:flex;
+    flex-wrap: wrap;
+}
+
+.tags__tag {
+    margin: 2%;
+    font-size: 1rem;
+    font-family: "Open Sans";
+    background-color: #e7e7e7;
+    border-radius: 4px;
+    padding: 2%;
+}
+
+.expanded-image-container__compress-button {
+    position: relative;
+    color: #fff;
+    font-size: 25px;
+    background-color: transparent;
+    border:none;
+    bottom: 45px;
+    left: 85%;
+}
+
