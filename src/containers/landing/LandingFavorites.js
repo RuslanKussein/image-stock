@@ -26,7 +26,6 @@ class LandingFavorites extends React.Component {
                                 data={image}
                                 url={image.urls.regular}
                                 key={image.id}
-                                like
                                 favorites={this.props.favorites}
                                 setFavorites={this.props.setFavoritesFunction} />
                             )

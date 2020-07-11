@@ -33,7 +33,7 @@ class LandingNew extends Component {
     }
 
     fetch() {
-        const accessKey = "";
+        const accessKey = "dGct7mjhLLtRjJVaHR137Q_I5tXHXkrHDjHlrle9zzU";
         axios
             .get(
                 `https://api.unsplash.com/photos/?page=1&per_page=30&client_id=${accessKey}`

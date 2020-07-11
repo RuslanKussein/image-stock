@@ -20,7 +20,7 @@ class LandingQuery extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.fetchWithQuery = this.fetchWithQuery.bind(this);
-        this.accessKey = "";
+        this.accessKey = "dGct7mjhLLtRjJVaHR137Q_I5tXHXkrHDjHlrle9zzU";
     }
 
     componentDidMount() {
@@ -90,7 +90,7 @@ class LandingQuery extends Component {
                                          <Image
                                              data={image}
                                              url={image.urls.regular}
-                                             key={image.id}
+                                             key={image.urls.regular}
                                              favorites={this.props.favorites}
                                              setFavorites={this.props.setFavoritesFunction}/>
                                      )
