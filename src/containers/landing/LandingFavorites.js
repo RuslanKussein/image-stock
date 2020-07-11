@@ -18,6 +18,7 @@ class LandingFavorites extends React.Component {
     render() {
         return (
             <div className="container">
+                <p className="text-favorites">Избранное</p>
                 <CollageButtons />
 
                 <div className="image-grid">

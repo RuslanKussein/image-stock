@@ -261,5 +261,12 @@ img{
 }
 
 .margin100{
-    margin-top: 100px;
+    margin-top: 20px;
+}
+
+.text-favorites{
+    color: #000;
+    margin-top: 105px;
+    font: 1.5rem "Yu Gothic UI Semibold";
+    text-align: center;
 }
