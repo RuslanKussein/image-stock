@@ -280,6 +280,7 @@ img{
 }
 
 .expanded-image-container__image {
+    margin-top: 30px;
     filter: brightness(80%);
     transition: 0.3s;
     border-radius: 15px;
@@ -287,7 +288,6 @@ img{
 }
 
 .similar-tegs{
-    margin-top: 8%;
     font-size: 1.2rem;
 }
 
@@ -300,9 +300,9 @@ img{
     margin: 2%;
     font-size: 1rem;
     font-family: "Open Sans";
-    background-color: #e7e7e7;
+    background-color: #eeeeee;
     border-radius: 4px;
-    padding: 2%;
+    padding: 2% 3%;
 }
 
 .expanded-image-container__compress-button {
@@ -315,3 +315,70 @@ img{
     left: 85%;
 }
 
+.expanded-image-container__user {
+    display: inline-flex;
+    justify-content: space-between;
+    font-family: "Open Sans";
+    text-align: center;
+}
+
+.expanded-image-container__user__photo {
+    width: 50px;
+    height: 50px;
+    margin: 10px auto;
+    border-radius: 6px;
+    border: 1px solid #fff;
+}
+
+.expanded-image-container__user__info {
+    display: flex;
+    margin-left: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.expanded-image-container__user__info__name {
+    font-size: 16px;
+}
+
+.expanded-image-container__user__info__username {
+    font-size: 13px;
+    color: #767676;
+}
+
+.expanded-image-container__buttons {
+    display: inline-flex;
+    justify-content: space-between;
+}
+.expanded-image-container__buttons__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    font-size: 1.5rem;
+}
+
+.expanded-image-container__buttons__button_like {
+    margin-right: 20px;
+    background-color: #fff;
+    color: #767676;
+    -webkit-box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 5px 4px rgba(0,0,0,0.1);
+}
+
+.expanded-image-container__buttons__button_download {
+    color: #fff;
+    background: #008B00;
+}
+
+.expanded-image-container__more {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
