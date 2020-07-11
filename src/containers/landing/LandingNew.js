@@ -1,14 +1,14 @@
 import React,{Component} from 'react';
 import { connect } from "react-redux";
-import axios from "axios";
+import {Link} from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
+import axios from "axios";
 import setFavoritesAction from '../../actions/actionFavorites';
 import setQueryAction from "../../actions/actionQuery";
-import Image from "../../containers/Image";
-import CollageButtons from "../CollageButtons";
-import Search from "../Search";
-import Carousel from "../Carousel";
-import {Link} from "react-router-dom";
+import Image from "../Image";
+import CollageButtons from "../../components/CollageButtons";
+import Search from "../../components/Search";
+import Carousel from "../../components/Carousel";
 
 class LandingNew extends Component {
     constructor(props) {
@@ -22,12 +22,6 @@ class LandingNew extends Component {
 
     componentDidMount() {
         this.fetch();
-        document.querySelector('.nav__button_search').setAttribute('hidden', true);
-        window.addEventListener("scroll", this.handleScroll);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
     }
 
     handleSubmit() {
@@ -38,25 +32,11 @@ class LandingNew extends Component {
         this.props.setQueryFunction(event.target.value);
     }
 
-    handleScroll() {
-        if (this.scrollY === 0) {
-            document.querySelector('.nav__button_search').setAttribute('hidden', true);
-            document.querySelector('.form').removeAttribute('hidden');
-            document.querySelector('.carousel').removeAttribute('hidden');
-        } else {
-            document.querySelector('.nav__button_search').removeAttribute('hidden');
-            document.querySelector('.form').setAttribute('hidden', true);
-            document.querySelector('.carousel').setAttribute('hidden', true);
-        }
-    }
-
     fetch() {
-        const apiRoot = "https://api.unsplash.com";
         const accessKey = "";
-
         axios
             .get(
-                `${apiRoot}/photos/?page=1&per_page=30&client_id=${accessKey}`
+                `https://api.unsplash.com/photos/?page=1&per_page=30&client_id=${accessKey}`
             )
             .then (res => {
                 this.setState({
@@ -79,9 +59,7 @@ class LandingNew extends Component {
                 <Carousel
                     setQuery={this.props.setQueryFunction} />
 
-                <CollageButtons
-                    setQuery={this.props.setQueryFunction}
-                    style={{marginTop: "100px"}}/>
+                <CollageButtons/>
 
                 <InfiniteScroll
                     dataLength={this.state.downloadedImages}
@@ -104,7 +82,7 @@ class LandingNew extends Component {
                     </div>
                 </InfiniteScroll>
 
-                <Link to={`/photos/${this.props.query}`} className="linkToQuery"></Link>
+                <Link to={`/photos/${this.props.query}`} className="linkToQuery"/>
             </div>
         );
     }

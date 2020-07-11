@@ -1,29 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Route} from "react-router-dom";
-import { Provider } from "react-redux";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import {Provider} from "react-redux";
 import {createStore} from 'redux';
 import * as serviceWorker from './serviceWorker';
 import './styles/index.css';
 import rootReducer from "./reducers/RootReducer";
 import Nav from './components/Nav';
-import Carousel from "./components/Carousel";
-import LandingQuery from "./components/landing/LandingQuery";
-import LandingFavorites from "./components/landing/LandingFavorites";
-import LandingNew from "./components/landing/LandingNew";
+import LandingQuery from "./containers/landing/LandingQuery";
+import LandingFavorites from "./containers/landing/LandingFavorites";
+import LandingNew from "./containers/landing/LandingNew";
 import ButtonToTop from "./components/ButtonToTop";
 
 const store = createStore(rootReducer);
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <Router>
                 <Nav/>
                 <ButtonToTop/>
                 <Route exact path="/" component={LandingNew}/>
                 <Route path="/favorites" component={LandingFavorites}/>
                 <Route path={`/photos/${store.getState().imageStockInfo.query}`} component={LandingQuery}/>
-        </BrowserRouter>
+        </Router>
     </Provider>,
     document.getElementById('root')
 );

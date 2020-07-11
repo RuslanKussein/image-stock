@@ -59,8 +59,7 @@ class Image extends React.Component {
                         </button>
 
                         <a className="collage-image-container__more__buttons__button download"
-                           href={`${links.download}`}
-                           target="_blank">
+                           href={`${links.download}`}>
                             <i className="fas fa-arrow-circle-down"></i>
                         </a>
 

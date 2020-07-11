@@ -7,12 +7,12 @@ import setImagesAction from '../../actions/actionImages';
 import setFavoritesAction from '../../actions/actionFavorites';
 import setSearchHistoryAction from '../../actions/actionSearchHistory';
 import setImagesHistoryAction from '../../actions/actionImagesHistory';
-import Carousel from "../Carousel";
-import Search from "../Search";
-import CollageButtons from "../CollageButtons";
+import Carousel from "../../components/Carousel";
+import Search from "../../components/Search";
+import CollageButtons from "../../components/CollageButtons";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Image from "../../containers/Image";
-import ImageNotFound from "../ImageNotFound";
+import ImageNotFound from "../../components/ImageNotFound";
 
 class LandingQuery extends Component {
     constructor(props) {
@@ -20,17 +20,20 @@ class LandingQuery extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.fetchWithQuery = this.fetchWithQuery.bind(this);
+        this.accessKey = "";
     }
 
-    handleSubmit(event) {
+    componentDidMount() {
+        this.fetchWithQuery();
+    }
+
+    handleSubmit() {
         const {searchHistory, images, query} = this.props;
-        const apiRoot = "https://api.unsplash.com";
-        const accessKey = "SRRiJ_oUF0utzD_1LUQjziknd9NCYn9CqLEc8mMTKbM";
         axios
-            .get(`${apiRoot}/search/photos/?page=1&per_page=30&query=${query}&client_id=${accessKey}`)
+            .get(`https://api.unsplash.com/search/photos/?page=1&per_page=30&query=${query}&client_id=${this.accessKey}`)
             .then (res => {
                 if (searchHistory.length > 0 && searchHistory[searchHistory.length - 1] !== query) {
-                    this.props.setQueryFunction([...res.data.results]);
+                    this.props.setImagesFunction([...res.data.results]);
                 } else {
                     this.props.setImagesFunction([...images, ...res.data.results]);
                 }
@@ -39,16 +42,12 @@ class LandingQuery extends Component {
             .catch(err => {
                 console.log('Error happened during fetching: ', err);
             });
-        event.preventDefault();
     }
 
     fetchWithQuery() {
-        const apiRoot = "https://api.unsplash.com";
-        const accessKey = "";
-
         axios
             .get(
-                `${apiRoot}/search/photos/?page=2&per_page=10&query=${this.props.query}&client_id=${accessKey}`
+                `https://api.unsplash.com/search/photos/?page=2&per_page=10&query=${this.props.query}&client_id=${this.accessKey}`
             )
             .then (res => {
                 this.props.setImagesFunction([...this.props.images, ...res.data.results]);
@@ -60,11 +59,6 @@ class LandingQuery extends Component {
 
     handleChange(event) {
         this.props.setQueryFunction(event.target.value);
-    }
-
-    componentDidMount() {
-        this.fetchWithQuery();
-        document.querySelector('.nav__button_search').setAttribute('hidden', true);
     }
 
     render() {
