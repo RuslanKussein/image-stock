@@ -2,6 +2,40 @@ import React from 'react';
 import UserInfo from '../components/UserInfo';
 
 class ExpandedImage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            like: this.search()
+        };
+        this.handleLike = this.handleLike.bind(this);
+        this.handleFavorites = this.handleFavorites.bind(this);
+        this.search = this.search.bind(this);
+        this.noTags = ["on", "at", "in", "to", "over", "up", "round", "towards", "the", "and", "or", "so"];
+    }
+
+    search() {
+        for (let data of this.props.favorites) {
+            if (data.urls.regular === this.props.data.urls.regular) return true;
+        }
+        return false;
+    }
+
+    handleLike() {
+        this.setState({
+            like: !this.state.like
+        });
+        this.handleFavorites(this.props.data);
+    }
+
+    handleFavorites(image) {
+        if (!this.state.like) {
+            this.props.setFavorites([...this.props.favorites, image]);
+        } else {
+            const filteredFavorites = this.props.favorites.filter((item) => item !== image);
+            this.props.setFavorites(filteredFavorites);
+        }
+    }
+
     render() {
         const {url, data: {user: {name, username, profile_image: image}, description, alt_description, links}} = this.props;
         const alt_descriptionArray = alt_description ? alt_description.split(' ') : [];
@@ -19,7 +53,8 @@ class ExpandedImage extends React.Component {
 
                     <div className="expanded-image-container__buttons">
 
-                        <button className="expanded-image-container__buttons__button expanded-image-container__buttons__button_like">
+                        <button className={`expanded-image-container__buttons__button expanded-image-container__buttons__button_like ${this.state.like ? "like_true" : ""}`}
+                                onClick={this.handleLike}>
                             <i className="fas fa-heart"></i>
                         </button>
 
@@ -43,13 +78,15 @@ class ExpandedImage extends React.Component {
 
                 {alt_descriptionArray.length === 0 ?
                     <div className="similar-tegs">
-                        Похожих тегов нету
+                        К сожалению, автор не добавил тегов
                     </div> :
                     <div className="similar-tegs">
                         Похожие теги
                         <div className="tags">
                             {alt_descriptionArray.map((item) => (
-                                <div className="tags__tag">{item}</div>
+                                (this.noTags.indexOf(item) === -1 && !item.endsWith("ing"))?
+                                    <div className="tags__tag">{item}</div> :
+                                    ""
                             ))}
                         </div>
                     </div>

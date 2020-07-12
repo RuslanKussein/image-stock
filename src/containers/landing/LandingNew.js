@@ -19,6 +19,7 @@ class LandingNew extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.fetch = this.fetch.bind(this);
+        this.handleExpand = this.handleExpand.bind(this);
     }
 
     componentDidMount() {
@@ -31,6 +32,20 @@ class LandingNew extends Component {
 
     handleChange(event) {
         this.props.setQueryFunction(event.target.value);
+    }
+
+    handleExpand(data) {
+        data.expand = true;
+        const rest = this.state.downloadedImages;
+        rest.splice(rest.indexOf(data), 1);
+        //esli 1 tozhe expand udalyem
+        if (rest[0].expand) {
+            rest.splice(0, 1);
+        }
+        this.setState({
+            downloadedImages: [data, ...rest]
+        });
+        document.getElementById("toTop").click();
     }
 
     fetch() {
@@ -72,14 +87,22 @@ class LandingNew extends Component {
 
                     <div className="image-grid">
                         {this.state.downloadedImages.map((image) => (
+                            image.expand ?
                                 <ExpandedImage
                                     data={image}
                                     url={image.urls.regular}
                                     key={image.id}
                                     favorites={this.props.favorites}
+                                    setFavorites={this.props.setFavoritesFunction}/> :
+
+                                <Image
+                                    data={image}
+                                    url={image.urls.regular}
+                                    key={image.urls.regular}
+                                    handleExpand={this.handleExpand}
+                                    favorites={this.props.favorites}
                                     setFavorites={this.props.setFavoritesFunction}/>
-                            )
-                        )}
+                                ))}
                     </div>
                 </InfiniteScroll>
 
@@ -106,5 +129,4 @@ function mapDispatchToProps(dispatch) {
         }
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(LandingNew);

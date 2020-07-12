@@ -54,7 +54,8 @@ class Image extends React.Component {
                             <i className="fas fa-heart"></i>
                         </button>
 
-                        <button className="collage-image-container__more__buttons__button">
+                        <button className="collage-image-container__more__buttons__button"
+                                onClick={() => this.props.handleExpand(this.props.data)}>
                             <i className="fas fa-expand-arrows-alt"></i>
                         </button>
 
