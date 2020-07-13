@@ -37,7 +37,7 @@ class ExpandedImage extends React.Component {
     }
 
     render() {
-        const {url, data: {user: {name, username, profile_image: image}, description, alt_description, links}} = this.props;
+        const {url, handleCompress, data: {user: {name, username, profile_image: image}, description, alt_description, links}} = this.props;
         const alt_descriptionArray = alt_description ? alt_description.split(' ') : [];
         return (
             <div className="expanded-image-container">
@@ -71,7 +71,8 @@ class ExpandedImage extends React.Component {
                      src={url}
                      alt={description || `No Description`}/>
 
-                <button className="expanded-image-container__compress-button">
+                <button className="expanded-image-container__compress-button"
+                        onClick={() => handleCompress(this.props.data)}>
                     <i className="fa fa-compress"></i>
                 </button>
 

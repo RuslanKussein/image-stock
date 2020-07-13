@@ -20,6 +20,7 @@ class LandingNew extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.fetch = this.fetch.bind(this);
         this.handleExpand = this.handleExpand.bind(this);
+        this.handleCompress = this.handleCompress.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +47,13 @@ class LandingNew extends Component {
             downloadedImages: [data, ...rest]
         });
         document.getElementById("toTop").click();
+    }
+
+    handleCompress(data) {
+        data.expand = false;
+        this.setState({
+            downloadedImages: [...this.state.downloadedImages]
+        });
     }
 
     fetch() {
@@ -92,6 +100,7 @@ class LandingNew extends Component {
                                     data={image}
                                     url={image.urls.regular}
                                     key={image.id}
+                                    handleCompress={this.handleCompress}
                                     favorites={this.props.favorites}
                                     setFavorites={this.props.setFavoritesFunction}/> :
 
