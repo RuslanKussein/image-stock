@@ -1,5 +1,6 @@
 import React from 'react';
 import UserInfo from '../components/UserInfo';
+import {addImageToFavoritesAction, removeImageFromFavoritesAction} from "../actions/favorites";
 
 class Image extends React.Component {
     constructor(props) {
@@ -8,7 +9,6 @@ class Image extends React.Component {
             like: this.search()
         };
         this.handleLike = this.handleLike.bind(this);
-        this.handleFavorites = this.handleFavorites.bind(this);
         this.search = this.search.bind(this);
     }
 
@@ -20,23 +20,19 @@ class Image extends React.Component {
     }
 
     handleLike() {
+        if (this.state.like) {
+            removeImageFromFavoritesAction(this.props.data)
+        } else {
+            addImageToFavoritesAction(this.props.data);
+        }
+
         this.setState({
             like: !this.state.like
         });
-        this.handleFavorites(this.props.data);
-    }
-
-    handleFavorites(image) {
-        if (!this.state.like) {
-            this.props.setFavorites([...this.props.favorites, image]);
-        } else {
-            const filteredFavorites = this.props.favorites.filter((item) => item !== image);
-            this.props.setFavorites(filteredFavorites);
-        }
     }
 
     render() {
-        const {url, data: {user, description, links}} = this.props;
+        const {url, data: {user, description, links}, handleExpand} = this.props;
         return (
             <div className="collage-image-container">
 
@@ -55,7 +51,7 @@ class Image extends React.Component {
                         </button>
 
                         <button className="collage-image-container__more__buttons__button"
-                                onClick={() => this.props.handleExpand(this.props.data)}>
+                                onClick={() => handleExpand(this.props.data)}>
                             <i className="fas fa-expand-arrows-alt"></i>
                         </button>
 

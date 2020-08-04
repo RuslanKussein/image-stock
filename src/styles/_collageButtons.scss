@@ -1,0 +1,18 @@
+.collage__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+}
+
+.collage__buttons__button {
+  font-size: 25px;
+  color: #767676;
+  margin-right: 5px;
+  background: transparent;
+  border: none;
+}
+
+.collage__buttons__button_selected {
+  color: #111;
+}

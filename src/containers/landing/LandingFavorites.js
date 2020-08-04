@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from "react-redux";
-import setFavoritesAction from '../../actions/actionFavorites';
+import {addImageToFavoritesAction, removeImageFromFavoritesAction} from '../../actions/favorites';
 import Image from "../Image";
 import CollageButtons from "../../components/CollageButtons";
-import setQueryAction from "../../actions/actionQuery";
+import {setQueryAction} from "../../actions/query";
 
 class LandingFavorites extends React.Component {
     constructor(props) {
@@ -21,14 +21,16 @@ class LandingFavorites extends React.Component {
                 <p className="text-favorites">Избранное</p>
                 <CollageButtons />
 
-                <div className="image-grid">
+                <div className="collage-grid">
                         {this.props.favorites.map((image) => (
                             <Image
                                 data={image}
                                 url={image.urls.regular}
-                                key={image.id}
+                                key={image.urls.regular}
+                                handleExpand={this.handleExpand}
                                 favorites={this.props.favorites}
-                                setFavorites={this.props.setFavoritesFunction} />
+                                addImageToFavorites={this.props.addImageToFavoritesFunction}
+                                removeImageFromFavorites={this.props.removeImageFromFavoritesFunction}/>
                             )
                         )}
                 </div>
@@ -40,8 +42,8 @@ class LandingFavorites extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        query: state.imageStockInfo.query,
-        favorites: state.imageStockInfo.favorites,
+        query: state.query,
+        favorites: state.favorites,
     }
 }
 
@@ -50,8 +52,11 @@ function mapDispatchToProps(dispatch) {
         setQueryFunction: query => {
             dispatch(setQueryAction(query))
         },
-        setFavoritesFunction: favorites => {
-            dispatch(setFavoritesAction(favorites))
+        addImageToFavoritesFunction: image => {
+            dispatch(addImageToFavoritesAction(image))
+        },
+        removeImageFromFavoritesFunction: image => {
+            dispatch(removeImageFromFavoritesAction(image))
         }
     }
 }

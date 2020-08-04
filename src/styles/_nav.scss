@@ -1,0 +1,45 @@
+.header {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  height: 85px;
+}
+.nav {
+  position: relative;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  height: 100%;
+}
+
+.nav__button  {
+  position: fixed;
+  top: 28px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: none;
+  font-size: 25px;
+  color: #fff;
+}
+
+.nav__button_home {
+  left: 8px;
+}
+
+.nav__button_search {
+  left: 57vw;
+}
+
+.nav__button_favorites {
+  left: 70vw;
+}
+
+.nav__button_search-history {
+  left: 83vw;
+}

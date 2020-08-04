@@ -1,5 +1,6 @@
 import React from 'react';
 import UserInfo from '../components/UserInfo';
+import {addImageToFavoritesAction, removeImageFromFavoritesAction} from "../actions/favorites";
 
 class ExpandedImage extends React.Component {
     constructor(props) {
@@ -8,7 +9,6 @@ class ExpandedImage extends React.Component {
             like: this.search()
         };
         this.handleLike = this.handleLike.bind(this);
-        this.handleFavorites = this.handleFavorites.bind(this);
         this.search = this.search.bind(this);
         this.noTags = ["on", "at", "in", "to", "over", "up", "round", "towards", "the", "and", "or", "so"];
     }
@@ -21,19 +21,15 @@ class ExpandedImage extends React.Component {
     }
 
     handleLike() {
+        if (this.state.like) {
+            removeImageFromFavoritesAction(this.props.data)
+        } else {
+            addImageToFavoritesAction(this.props.data);
+        }
+
         this.setState({
             like: !this.state.like
         });
-        this.handleFavorites(this.props.data);
-    }
-
-    handleFavorites(image) {
-        if (!this.state.like) {
-            this.props.setFavorites([...this.props.favorites, image]);
-        } else {
-            const filteredFavorites = this.props.favorites.filter((item) => item !== image);
-            this.props.setFavorites(filteredFavorites);
-        }
     }
 
     render() {

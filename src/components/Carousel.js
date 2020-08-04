@@ -1,40 +1,17 @@
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import '../styles/style.css'
 import OwlCarousel from "react-owl-carousel";
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 
-class Carousel extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isTop: false
-        };
-        this.handleScroll = this.handleScroll.bind(this);
-    }
-    componentDidMount() {
-        window.addEventListener("scroll", this.handleScroll);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("scroll", this.handleScroll);
-    }
-
-    handleScroll() {
-        if (window.scrollY === 0) {
-            this.setState({
-                isTop: false
-            });
-        } else {
-            this.setState({
-                isTop: true
-            });
-        }
+class Carousel extends PureComponent {
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return false;
     }
 
     render() {
         return (
-            <div className="carousel" onClick={(event) => this.props.setQuery(event.target.textContent)} hidden={this.state.isTop}>
+            <div className="carousel" onClick={event => this.props.onClick(event.target.textContent)}>
                 <OwlCarousel
                     className="owl-theme"
                     margin={10}

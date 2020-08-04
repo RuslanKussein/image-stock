@@ -1,14 +1,15 @@
-import React, {Component} from 'react';
+import React, {Component, PureComponent} from 'react';
 import '../styles/style.css';
 
-class ButtonToTop extends Component {
+class Footer extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            isTop: true
+            onTop: true
         };
         this.handleScroll = this.handleScroll.bind(this);
     }
+
     componentDidMount() {
         window.addEventListener("scroll", this.handleScroll);
     }
@@ -18,24 +19,21 @@ class ButtonToTop extends Component {
     }
 
     handleScroll() {
-        if (window.scrollY === 0) {
-            this.setState({
-                isTop: true
-            });
-        } else {
-            this.setState({
-                isTop: false
-            });
-        }
+        this.setState({
+            onTop: window.scrollY === 0
+        })
     }
 
     render() {
+        console.log("footer");
         return (
-            <div id="toTop" onClick={() => window.scrollTo(0, 0)} hidden={this.state.isTop}>
+            <footer className="footer"
+                    onClick={() => window.scrollTo(0, 0)}
+                    hidden={this.state.onTop}>
                 <i className="fas fa-arrow-up"></i>
-            </div>
+            </footer>
         )
     }
 }
 
-export default ButtonToTop;
+export default Footer;
