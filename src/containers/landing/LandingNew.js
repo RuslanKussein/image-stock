@@ -13,6 +13,7 @@ import ExpandedImage from "../ExpandedImage";
 import SearchHistory from "../../components/SearchHistory";
 import '../../styles/style.css'
 import {addToSearchHistoryAction, clearSearchHistoryAction} from "../../actions/searchHistory";
+import {accessKey} from "../../constants/other";
 
 class LandingNew extends Component {
     constructor(props) {
@@ -70,7 +71,6 @@ class LandingNew extends Component {
     }
 
     fetchImages() {
-        const accessKey = "dGct7mjhLLtRjJVaHR137Q_I5tXHXkrHDjHlrle9zzU";
         axios
             .get(
                 `https://api.unsplash.com/photos/?page=${this.state.pageNumber}&per_page=30&client_id=${accessKey}`

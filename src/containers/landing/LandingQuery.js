@@ -12,6 +12,7 @@ import Image from "../../containers/Image";
 import ImageNotFound from "../../components/ImageNotFound";
 import {setQueryAction} from "../../actions/query";
 import ExpandedImage from "../ExpandedImage";
+import {accessKey} from "../../constants/other";
 
 class LandingQuery extends Component {
     constructor(props) {
@@ -20,23 +21,26 @@ class LandingQuery extends Component {
             pageNumber: 1,
             downloadedImages: []
         }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.fetchWithQuery = this.fetchWithQuery.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.fetchImages = this.fetchImages.bind(this);
         this.handleClickCarousel = this.handleClickCarousel.bind(this);
         this.handleExpand = this.handleExpand.bind(this);
         this.handleCompress = this.handleCompress.bind(this);
-        this.accessKey = "dGct7mjhLLtRjJVaHR137Q_I5tXHXkrHDjHlrle9zzU";
     }
 
     componentDidMount() {
-        this.handleSubmit();
+        this.handleFormSubmit();
     }
 
-    handleSubmit() {
+    handleInputChange(event) {
+        this.props.setQueryFunction(event.target.value);
+    }
+
+    handleFormSubmit() {
         const {searchHistory, query} = this.props;
         axios
-            .get(`https://api.unsplash.com/search/photos/?page=1&per_page=30&query=${query}&client_id=${this.accessKey}`)
+            .get(`https://api.unsplash.com/search/photos/?page=1&per_page=30&query=${query}&client_id=${accessKey}`)
             .then (res => {
                 if (searchHistory.length > 0 && searchHistory[searchHistory.length - 1] !== query) {
                     this.setState({
@@ -52,7 +56,7 @@ class LandingQuery extends Component {
                 this.props.addToSearchHistoryFunction(query);
             })
             .catch(err => {
-                this.handleSubmit();
+                this.handleFormSubmit();
                 console.log('Error happened during fetching: ', err);
             });
     }
@@ -80,13 +84,13 @@ class LandingQuery extends Component {
 
     handleClickCarousel(query) {
         this.props.setQueryFunction(query);
-        this.handleSubmit();
+        this.handleFormSubmit();
     }
 
-    fetchWithQuery() {
+    fetchImages() {
         axios
             .get(
-                `https://api.unsplash.com/search/photos/?page=${this.state.pageNumber}&per_page=10&query=${this.props.query}&client_id=${this.accessKey}`
+                `https://api.unsplash.com/search/photos/?page=${this.state.pageNumber}&per_page=10&query=${this.props.query}&client_id=${accessKey}`
             )
             .then (res => {
                 this.setState({
@@ -100,17 +104,13 @@ class LandingQuery extends Component {
             });
     }
 
-    handleChange(event) {
-        this.props.setQueryFunction(event.target.value);
-    }
-
     render() {
         return (
              <>
                  <Form
                      value={this.props.query}
-                     onChange={this.handleChange}
-                     onSubmit={this.handleSubmit}/>
+                     onChange={this.handleInputChange}
+                     onSubmit={this.handleFormSubmit}/>
 
                  <Carousel onClick={this.handleClickCarousel}/>
 
@@ -118,7 +118,7 @@ class LandingQuery extends Component {
 
                  <InfiniteScroll
                      dataLength={this.state.downloadedImages}
-                     next={() => this.fetchWithQuery()}
+                     next={() => this.fetchImages()}
                      hasMore={true}
                      loader={<img src={require("../../gifs/loading.gif")} alt="loading gif" className="loading-gif"/>}
                  >

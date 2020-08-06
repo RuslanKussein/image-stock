@@ -1,0 +1,2 @@
+export const popularSearchTags = ["Wallpapers", "Textures & Patterns", "Nature", "Current Events", "Architecture", "Business & Work", "Film", "Animals", "Travel", "Fashion", "Food & Drink", "Eminem", "Bill Gates", "COVID-19", "Girls", "Technology", "Street Workout"];
+export const accessKey = "dGct7mjhLLtRjJVaHR137Q_I5tXHXkrHDjHlrle9zzU";

@@ -22,3 +22,11 @@
   font-size: 30px;
   letter-spacing: 1px;
 }
+
+.form_fixed {
+  position: fixed;
+  top: 84px;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+}

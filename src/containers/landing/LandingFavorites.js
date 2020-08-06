@@ -4,6 +4,7 @@ import {addImageToFavoritesAction, removeImageFromFavoritesAction} from '../../a
 import Image from "../Image";
 import CollageButtons from "../../components/CollageButtons";
 import {setQueryAction} from "../../actions/query";
+import ExpandedImage from "../ExpandedImage";
 
 class LandingFavorites extends React.Component {
     constructor(props) {
@@ -22,17 +23,28 @@ class LandingFavorites extends React.Component {
                 <CollageButtons />
 
                 <div className="collage-grid">
-                        {this.props.favorites.map((image) => (
-                            <Image
-                                data={image}
-                                url={image.urls.regular}
-                                key={image.urls.regular}
-                                handleExpand={this.handleExpand}
-                                favorites={this.props.favorites}
-                                addImageToFavorites={this.props.addImageToFavoritesFunction}
-                                removeImageFromFavorites={this.props.removeImageFromFavoritesFunction}/>
+                        {
+                            this.props.favorites.map(image => image.expand ? (
+                                <ExpandedImage
+                                    data={image}
+                                    url={image.urls.regular}
+                                    key={image.id}
+                                    handleCompress={this.handleCompress}
+                                    favorites={this.props.favorites}
+                                    addImageToFavorites={this.props.addImageToFavoritesFunction}
+                                    removeImageFromFavorites={this.props.removeImageFromFavoritesFunction}/>
+                                ) : (
+                                <Image
+                                    data={image}
+                                    url={image.urls.regular}
+                                    key={image.urls.regular}
+                                    handleExpand={this.handleExpand}
+                                    favorites={this.props.favorites}
+                                    addImageToFavorites={this.props.addImageToFavoritesFunction}
+                                    removeImageFromFavorites={this.props.removeImageFromFavoritesFunction}/>
+                                )
                             )
-                        )}
+                        }
                 </div>
 
             </div>

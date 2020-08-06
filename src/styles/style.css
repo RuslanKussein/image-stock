@@ -96,6 +96,14 @@
   letter-spacing: 1px;
 }
 
+.form_fixed {
+  position: fixed;
+  top: 84px;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+}
+
 .collage__buttons {
   display: flex;
   justify-content: center;
@@ -142,7 +150,6 @@ img {
   object-fit: cover;
 }
 
-/*Single Image*/
 .collage-image-container {
   position: relative;
   z-index: 1;
@@ -248,7 +255,6 @@ img {
   margin-top: -6px;
 }
 
-/*like_true*/
 .like_true {
   color: red !important;
 }
@@ -257,7 +263,6 @@ img {
   color: #fff !important;
 }
 
-/*text-favorites*/
 .text-favorites {
   color: #000;
   margin-top: 105px;
@@ -265,7 +270,6 @@ img {
   text-align: center;
 }
 
-/*Expanded Image*/
 .expanded-image-container {
   padding: 0 15px;
 }

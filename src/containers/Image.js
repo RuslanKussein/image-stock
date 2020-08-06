@@ -21,9 +21,9 @@ class Image extends React.Component {
 
     handleLike() {
         if (this.state.like) {
-            removeImageFromFavoritesAction(this.props.data)
+            this.props.removeImageFromFavorites(this.props.data)
         } else {
-            addImageToFavoritesAction(this.props.data);
+            this.props.addImageToFavorites(this.props.data);
         }
 
         this.setState({
