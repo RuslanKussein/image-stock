@@ -1,18 +1,17 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import UserInfo from '../components/UserInfo';
-import {addImageToFavoritesAction, removeImageFromFavoritesAction} from "../actions/favorites";
 
-class Image extends React.Component {
+class Image extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            like: this.search()
+            like: this.isLiked()
         };
+        this.isLiked = this.isLiked.bind(this);
         this.handleLike = this.handleLike.bind(this);
-        this.search = this.search.bind(this);
     }
 
-    search() {
+    isLiked() {
         for (let data of this.props.favorites) {
             if (data.urls.regular === this.props.data.urls.regular) return true;
         }
@@ -32,7 +31,7 @@ class Image extends React.Component {
     }
 
     render() {
-        const {url, data: {user, description, links}, handleExpand} = this.props;
+        const {url, data: {user, description, links}, handleExpandImage} = this.props;
         return (
             <div className="collage-image-container">
 
@@ -51,7 +50,7 @@ class Image extends React.Component {
                         </button>
 
                         <button className="collage-image-container__more__buttons__button"
-                                onClick={() => handleExpand(this.props.data)}>
+                                onClick={() => handleExpandImage(this.props.data)}>
                             <i className="fas fa-expand-arrows-alt"></i>
                         </button>
 

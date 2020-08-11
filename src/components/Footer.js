@@ -1,5 +1,5 @@
-import React, {Component, PureComponent} from 'react';
-import '../styles/style.css';
+import React, {PureComponent} from 'react';
+import "../styles/style.css";
 
 class Footer extends PureComponent {
     constructor(props) {
@@ -25,11 +25,8 @@ class Footer extends PureComponent {
     }
 
     render() {
-        console.log("footer");
         return (
-            <footer className="footer"
-                    onClick={() => window.scrollTo(0, 0)}
-                    hidden={this.state.onTop}>
+            <footer className="footer" onClick={() => window.scrollTo(0, 0)} hidden={this.state.onTop}>
                 <i className="fas fa-arrow-up"></i>
             </footer>
         )

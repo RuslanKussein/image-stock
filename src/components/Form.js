@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Form = () => {
-    const {inputValue, onInputChange, onFormSubmit} = this.props;
+const Form = props => {
+    const {inputValue, onInputChange, onFormSubmit} = props;
     return (
         <form action="" className="form" onSubmit={onFormSubmit}>
             <input type="text" placeholder="Поиск" className="form__input"

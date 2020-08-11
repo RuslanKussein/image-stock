@@ -1,4 +1,4 @@
-import {ADD_IMAGE_TO_FAVORITES, REMOVE_IMAGE_FROM_FAVORITES} from "../constants/actionTypes";
+import {ADD_IMAGE_TO_FAVORITES, REMOVE_IMAGE_FROM_FAVORITES} from "../../constants/actionTypes";
 
 export function addImageToFavoritesAction(image) {
     return {

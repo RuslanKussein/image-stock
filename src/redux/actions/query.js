@@ -1,4 +1,4 @@
-import {SET_QUERY} from "../constants/actionTypes";
+import {SET_QUERY} from "../../constants/actionTypes";
 
 export function setQueryAction(query) {
     return {

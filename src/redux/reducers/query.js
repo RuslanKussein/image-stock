@@ -1,4 +1,4 @@
-import {SET_QUERY} from "../constants/actionTypes";
+import {SET_QUERY} from "../../constants/actionTypes";
 
 const queryReducer = (query = "", action) => {
     switch (action.type) {

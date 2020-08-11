@@ -2,7 +2,7 @@
 @import "footer";
 @import "form";
 @import "collageButtons";
-@import "collageGrid";
+@import "collage";
 
 * {
   margin: 0;
@@ -22,7 +22,7 @@ img{
   object-fit: cover;
 }
 
-//SINGLE IMAGE
+//
 .collage-image-container {
   position: relative;
   z-index: 1;
@@ -31,37 +31,6 @@ img{
 
 .collage-image-container__image {
   border-radius: 15px;
-}
-
-//LOADING GIF
-.loading-gif {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto;
-}
-
-//IMAGE NOT FOUND
-.no-content-available {
-  width: 100%;
-  font-size: 30px;
-  color: #000;
-  font-family: "Yu Gothic UI Semibold";
-  text-align: center;
-  margin: 30px 0;
-}
-
-//CAROUSEL
-.owl-theme {
-  position: absolute!important;
-  top: 160px;
-}
-
-.item p {
-  white-space: nowrap;
-  text-align: center;
-  font-family: "Mongolian Baiti";
-  color: #fff;
-  font-size: 18px;
 }
 
 //HOVER IMAGE
@@ -150,6 +119,35 @@ img{
   text-align: center;
 }
 
+.main {
+  margin-top: 80px;
+}
+
+//HIDDEN
+.hidden {
+  display: none!important;
+}
+
+//CAROUSEL
+.owl-theme {
+  position: absolute!important;
+  top: 160px;
+  p {
+    white-space: nowrap;
+    text-align: center;
+    font-family: "Mongolian Baiti";
+    color: #fff;
+    font-size: 18px;
+  }
+}
+
+//LOADING GIF
+.loading-gif {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+}
+
 //EXPANDED IMAGE
 .expanded-image-container {
   padding: 0 15px;
@@ -163,22 +161,23 @@ img{
 
 }
 
-.similar-tegs{
+.similar-tags-header{
   font-size: 1.2rem;
 }
 
-.tags {
+.similar-tags {
   display:flex;
   flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
-.tags__tag {
-  margin: 2%;
+.similar-tags__tag {
   font-size: 1rem;
   font-family: "Open Sans";
   background-color: #eeeeee;
   border-radius: 4px;
   padding: 5px 8px;
+  margin: 14px 14px 0 0;
 }
 
 .expanded-image-container__compress-button {
@@ -259,10 +258,12 @@ img{
   margin-top: 10px;
 }
 
-.main {
-  margin-top: 80px;
-}
-
-.hidden {
-  display: none!important;
+//IMAGE NOT FOUND
+.no-content-available {
+  width: 100%;
+  font-size: 30px;
+  color: #000;
+  font-family: "Yu Gothic UI Semibold";
+  text-align: center;
+  margin: 30px 0;
 }

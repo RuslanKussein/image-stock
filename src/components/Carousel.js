@@ -1,18 +1,14 @@
 import React, {PureComponent} from 'react';
-import '../styles/style.css'
 import OwlCarousel from "react-owl-carousel";
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import {popularSearchTags} from "../constants/other";
+import '../styles/style.css'
 
 class Carousel extends PureComponent {
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        return false;
-    }
-
     render() {
         return (
-            <div className="carousel" onClick={event => this.props.onClick(event.target.textContent)}>
+            <div className="carousel" onClick={this.props.onClick}>
                 <OwlCarousel
                     className="owl-theme"
                     margin={10}

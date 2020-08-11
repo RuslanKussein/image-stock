@@ -8,7 +8,7 @@ import LandingQuery from "./containers/landing/LandingQuery";
 import LandingFavorites from "./containers/landing/LandingFavorites";
 import LandingNew from "./containers/landing/LandingNew";
 import Footer from "./components/Footer";
-import store from "./store";
+import store from "./redux/store";
 
 ReactDOM.render(
     <Provider store={store}>

@@ -1,4 +1,4 @@
-import {ADD_TO_SEARCH_HISTORY, CLEAR_SEARCH_HISTORY} from "../constants/actionTypes";
+import {ADD_TO_SEARCH_HISTORY, CLEAR_SEARCH_HISTORY} from "../../constants/actionTypes";
 
 export function addToSearchHistoryAction(query) {
     return {
