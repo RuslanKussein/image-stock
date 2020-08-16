@@ -13,6 +13,7 @@ import Image from "../../containers/Image";
 import ExpandedImage from "../ExpandedImage";
 import {accessKey} from "../../constants/other";
 import '../../styles/style.css';
+import store from "../../redux/store";
 
 class LandingQuery extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class LandingQuery extends Component {
         this.state = {
             fetchedImages: [],
             page: 1,
+            rowOrGrid: false //row false, grid true
         }
         this.fetchImages = this.fetchImages.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -27,6 +29,7 @@ class LandingQuery extends Component {
         this.handleClickCarousel = this.handleClickCarousel.bind(this);
         this.handleExpandImage = this.handleExpandImage.bind(this);
         this.handleCompressImage = this.handleCompressImage.bind(this);
+        this.handleClickCollageButton = this.handleClickCollageButton.bind(this);
     }
 
     componentDidMount() {
@@ -102,6 +105,19 @@ class LandingQuery extends Component {
             });
     }
 
+    //CollageButton
+    handleClickCollageButton(button) {
+        if(button) {
+            this.setState({
+                rowOrGrid: true
+            })
+        } else {
+            this.setState({
+                rowOrGrid: false
+            })
+        }
+    }
+
     render() {
         return (
              <>
@@ -112,7 +128,7 @@ class LandingQuery extends Component {
 
                  <Carousel onClick={this.handleClickCarousel}/>
 
-                 <CollageButtons/>
+                 <CollageButtons onButtonClick={this.handleClickCollageButton}/>
 
                  <InfiniteScroll
                      dataLength={this.state.fetchedImages}
@@ -120,7 +136,7 @@ class LandingQuery extends Component {
                      hasMore={true}
                      loader={<img src={require("../../gifs/loading.gif")} alt="loading gif" className="loading-gif"/>}
                  >
-                     <div className="collage">
+                     <div className={`collage ${this.state.rowOrGrid ? "collage_grid" : "collage_row"}`}>
                          {
                              this.state.fetchedImages.length > 1 ? (
                                  this.state.fetchedImages.map(image => image.expand ? (

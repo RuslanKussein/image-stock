@@ -17,7 +17,7 @@ ReactDOM.render(
                 <main className="main">
                         <Route exact path="/" component={LandingNew}/>
                         <Route path="/favorites" component={LandingFavorites}/>
-                        <Route path={`/photos/${store.getState().query}`} component={LandingQuery}/>
+                        <Route path="/photos/" component={LandingQuery}/>
                 </main>
                 <Footer/>
         </Router>

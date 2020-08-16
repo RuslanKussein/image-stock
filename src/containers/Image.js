@@ -39,7 +39,7 @@ class Image extends PureComponent {
                      src={url}
                      alt={description || `No Description`}/>
 
-                <div className="collage-image-container__more">
+                {/*<div className="collage-image-container__more">
                     <UserInfo user={user}/>
 
                     <div className="collage-image-container__more__buttons">
@@ -62,7 +62,7 @@ class Image extends PureComponent {
 
                     </div>
 
-                </div>
+                </div>*/}
 
             </div>
         );

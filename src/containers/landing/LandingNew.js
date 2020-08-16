@@ -20,6 +20,7 @@ class LandingNew extends Component {
         this.state = {
             fetchedImages: [],
             page: 1,
+            rowOrGrid: false //row false, grid true
         };
         this.linkToQuery = React.createRef();
         this.fetchImages = this.fetchImages.bind(this);
@@ -28,6 +29,7 @@ class LandingNew extends Component {
         this.handleCompressImage = this.handleCompressImage.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleClickCarousel = this.handleClickCarousel.bind(this);
+        this.handleClickCollageButton = this.handleClickCollageButton.bind(this);
     }
 
     componentDidMount() {
@@ -84,6 +86,19 @@ class LandingNew extends Component {
             });
     }
 
+    //CollageButton
+    handleClickCollageButton(button) {
+        if(button) {
+            this.setState({
+                rowOrGrid: true
+            })
+        } else {
+            this.setState({
+                rowOrGrid: false
+            })
+        }
+    }
+
     render() {
         return (
             <>
@@ -92,10 +107,9 @@ class LandingNew extends Component {
                     onInputChange={this.handleInputChange}
                     onFormSubmit={this.handleFormSubmit}/>
 
-                <Carousel
-                    onClick={this.handleClickCarousel}/>
+                <Carousel onClick={this.handleClickCarousel}/>
 
-                <CollageButtons/>
+                <CollageButtons onButtonClick={this.handleClickCollageButton}/>
 
                 <InfiniteScroll
                     dataLength={this.state.fetchedImages}
@@ -103,7 +117,7 @@ class LandingNew extends Component {
                     hasMore={true}
                     loader={<img src={require("../../gifs/loading.gif")} alt="loading gif" className="loading-gif"/>}
                 >
-                    <div className="collage">
+                    <div className={`collage ${this.state.rowOrGrid ? "collage_grid" : "collage_row"}`}>
                         {
                             this.state.fetchedImages.map(image => image.expand ? (
                                 <ExpandedImage
@@ -129,7 +143,7 @@ class LandingNew extends Component {
                     </div>
                 </InfiniteScroll>
 
-                <Link to={`/photos/${this.props.query}`}
+                <Link to="/photos/"
                       className="linkToQuery"
                       ref={this.linkToQuery}/>
             </>

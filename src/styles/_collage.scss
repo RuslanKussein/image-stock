@@ -1,8 +1,21 @@
 .collage {
   display: grid;
-  grid-gap: 15px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-auto-rows: minmax(50px, auto);
   width: 100%;
   margin-top: 30px;
+  grid-auto-rows: minmax(50px, auto);
+}
+
+.collage_row {
+  grid-gap: 15px;
+  grid-template-columns: 1fr;
+}
+
+.collage_grid {
+  grid-template-columns: repeat(2, 50vw);
+  grid-auto-rows: 50vw;
+  grid-auto-flow: dense;
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
